@@ -28,6 +28,21 @@
       }
       this.dailyData = data;
     }
+
+    calculateMoonPhase(phase) {
+      const phases = [
+        "New Moon",
+        "Waxing Crescent",
+        "First Quarter",
+        "Waxing Gibbous",
+        "Full Moon",
+        "Waning Gibbous",
+        "Last Quarter",
+        "Waning Crescent",
+      ];
+
+      return phases[Math.floor(phase * 8)] ?? "New Moon";
+    }
   }
 
   const moon = new Moon();
