@@ -5,6 +5,7 @@
   class Moon {
     dailyData = $state([]);
     todaysDate = new Date();
+    static dateFormatter = new Intl.DateTimeFormat("en-US", { weekday: "short",});
 
     constructor(coordinates) {
       this.coordinates = coordinates ?? {
@@ -16,15 +17,15 @@
     getMoonData(nDays) {
       const data = [];
       for (let i = 0; i < nDays; i++) {
-        const currentDate = new Date(this.todaysDate);
-        currentDate.setDate(currentDate.getDate() + i);
+        const date = new Date(this.todaysDate);
+        date.setDate(date.getDate() + i);
         const moonTimes = getMoonTimes(
-          currentDate,
+          date,
           this.coordinates.longitude,
           this.coordinates.latitude,
         );
-        const moonIllumination = getMoonIllumination(currentDate);
-        data.push({ ...moonIllumination, ...moonTimes, currentDate });
+        const moonIllumination = getMoonIllumination(date);
+        data.push({ ...moonIllumination, ...moonTimes, date });
       }
       this.dailyData = data;
     }
@@ -42,6 +43,10 @@
       ];
 
       return phases[Math.floor(phase * 8)] ?? "New Moon";
+    }
+
+    static getWeekday(date) {
+      return this.dateFormatter.format(date);
     }
   }
 
