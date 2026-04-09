@@ -1,1 +1,22 @@
+:root {
+  --charcoal-black: #252422;
+  --mare-gray: #495057;
+  font-family: "General-Sans";
+}
 
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+body {
+  background-color: var(--charcoal-black);
+}
+
+@font-face {
+  font-family: "General-Sans";
+  src: url("./assets/fonts/GeneralSans-Variable.woff2") format("woff2");
+}
